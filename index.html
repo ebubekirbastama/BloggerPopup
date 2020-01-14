@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9" />
+      <meta http-equiv="content-language" content="TR" />
+	  
+      <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+	  
+      <link type="text/css" href="js/basic.css" rel="stylesheet" media="screen" />
+      <link type="text/css" href="js/gg_fb.css" rel="stylesheet" media="screen" />
+	  
+      <script type="text/javascript" src="js/jquery.simplemodal.1.4.1.min.js"></script>
+   </head>
+   <body>
+      <script type="text/javascript">
+         var sure = 15;   //  Geri sayım sayacının başlayacağı rakam
+         function Kontrol() {
+         	sure = sure-1;
+         	$("span#1").text(sure); // <span id="1"> </span> olan yerde geri sayım yapacaktır
+         	if( sure > 0 )  setTimeout("Kontrol()", 1000);
+         }
+         
+         
+         if(GetCookie('cerez') !== 'ebubekirbastama' )	
+         {        
+         jQuery(document).ready( function() 
+         { 		
+         	kapat = (sure-1)*1000 ; 
+         	jQuery('.gg-fb').modal({minWidth:"600"}); // Popup burda açılıyor
+         	Kontrol();
+             setTimeout(function(){ $.modal.close('.gg-fb');  }, kapat ); // Popup burda kapanıyor
+         	SetCookie('cerez','ebubekirbastama',1);  // cerez olusturduk her ziyaretçiye bir kere açılması için
+         
+         });
+         }
+      </script>
+      <div style="display:none;">
+         <div class="gg-fb">
+            <a href="https://api.whatsapp.com/send?phone=905554128854&text=Merhaba,%20Siber%20%20Güvenlik%20Test%20Yaptırtmak%20İstiyorum" target="_blank">
+                    <img src="js/yorum_yaz.png" alt="" height="320" width="600" />
+                  </a>
+            <div class="fb-div">
+			  <strong> 
+			    <span id="1" style="color:red;"> </span> Saniye sonra Kapanacaktır
+			  </strong>
+			</div>
+         </div>
+      </div>
+   </body>
+</html>
